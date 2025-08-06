@@ -2,15 +2,20 @@ function resetLeaderboard() {
   fetch("https://willerdev-studio-netlify-1.onrender.com/reset", {
     method: "POST",
     headers: {
-      "Authorization": "secret123" // Replace with env var or secure token
+      "Authorization": "secret123" // Replace with a secure token later
     }
   })
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("adminStatus").innerText = data.message;
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Reset failed");
+    }
+    return response.json();
   })
-  .catch(err => {
-    console.error("Reset failed:", err);
-    document.getElementById("adminStatus").innerText = "Reset failed.";
+  .then(data => {
+    document.getElementById("adminStatus").innerText = data.message || "Leaderboard reset!";
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    document.getElementById("adminStatus").innerText = "Reset failed. Check backend.";
   });
 }
