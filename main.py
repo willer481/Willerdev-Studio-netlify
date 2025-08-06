@@ -19,3 +19,12 @@ def submit():
 @app.route('/leaderboard', methods=['GET'])
 def get_leaderboard():
     return jsonify(leaderboard)
+
+@app.route('/reset', methods=['POST'])
+def reset_leaderboard():
+    auth = request.headers.get("Authorization")
+    if auth != "secret123":
+        return jsonify({"message": "Unauthorized"}), 403
+
+    leaderboard.clear()
+    return jsonify({"message": "Leaderboard reset successfully!"}), 200
