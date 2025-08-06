@@ -13,12 +13,10 @@
       align-items: center;
       padding: 40px;
     }
-
     h1 {
       color: #333;
       margin-bottom: 20px;
     }
-
     .admin-box {
       background: white;
       padding: 30px;
@@ -27,7 +25,6 @@
       text-align: center;
       width: 300px;
     }
-
     button, .back-button {
       background-color: #0077ff;
       color: white;
@@ -41,11 +38,9 @@
       text-decoration: none;
       display: inline-block;
     }
-
     button:hover, .back-button:hover {
       background-color: #005fcc;
     }
-
     #adminStatus {
       margin-top: 15px;
       color: #555;
@@ -54,13 +49,39 @@
 </head>
 <body>
   <h1>Admin Panel</h1>
-  <div class="admin-box">
+  <div class="admin-box" id="adminPanel" style="display:none;">
     <p>Click below to reset the leaderboard:</p>
     <button onclick="resetLeaderboard()">🧹 Reset Leaderboard</button>
     <p id="adminStatus"></p>
     <a href="https://willerdev-studio-page.netlify.app/" class="back-button">⬅ Back to Main Page</a>
   </div>
 
-  <script src="admin.js"></script>
+  <script>
+    const correctPassword = "codejammer123"; // Change this to your actual password
+    const userPassword = prompt("Enter admin password:");
+
+    if (userPassword === correctPassword) {
+      document.getElementById("adminPanel").style.display = "block";
+    } else {
+      alert("Access denied.");
+      window.location.href = "/";
+    }
+
+    function resetLeaderboard() {
+      fetch("https://your-backend-url/reset", {
+        method: "POST"
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Backend error");
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById("adminStatus").textContent = "Leaderboard reset successfully!";
+      })
+      .catch(error => {
+        document.getElementById("adminStatus").textContent = "Error: " + error.message;
+      });
+    }
+  </script>
 </body>
 </html>
