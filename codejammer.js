@@ -19,7 +19,7 @@ function submitScore() {
     return;
   }
 
-  fetch("https://your-backend-url.com/submit", {
+  fetch("https://willerdev-studio-netlify-1.onrender.com/submit", { ... })
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, code, challenge })
@@ -35,7 +35,7 @@ function submitScore() {
 }
 
 function loadLeaderboard() {
-  fetch("https://your-backend-url.com/leaderboard")
+  fetch("https://willerdev-studio-netlify-1.onrender.com/leaderboard")
     .then(res => res.json())
     .then(data => {
       const table = document.getElementById("leaderboardTable");
@@ -53,3 +53,4 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
