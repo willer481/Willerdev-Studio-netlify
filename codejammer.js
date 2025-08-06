@@ -21,11 +21,17 @@ function submitScore() {
     return;
   }
 
-  function clearFields() {
+function clearFields() {
   document.getElementById("playerName").value = "";
   document.getElementById("codeInput").value = "";
   document.getElementById("challengeText").innerText = "";
   document.getElementById("submissionStatus").innerText = "";
+}
+
+function escapeHTML(str) {
+  return str.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
 }
 
   fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
@@ -63,6 +69,7 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
 
 
 
