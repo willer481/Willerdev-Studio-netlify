@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="codejammer.css">
+</head>
+<body>
+  <h1>Admin Login</h1>
+  <input type="password" id="adminPass" placeholder="Enter admin password">
+  <button onclick="checkLogin()">Login</button>
+  <p id="loginStatus"></p>
+
+  <script>
+    function checkLogin() {
+      const pass = document.getElementById("adminPass").value;
+      if (pass === "secret123") { // Replace with secure method later
+        window.location.href = "admin.html";
+      } else {
+        document.getElementById("loginStatus").innerText = "Incorrect password.";
+      }
+    }
+  </script>
+</body>
+</html>
