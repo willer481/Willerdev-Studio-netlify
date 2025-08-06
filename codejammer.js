@@ -16,13 +16,14 @@ function submitScore() {
   const prompt = document.getElementById("challengeText").innerText;
   const code = document.getElementById("codeInput").value;
 
-  fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ player, prompt, code })
-  })
+fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ name: player, challenge: prompt, code })
+})
+
   .then(response => response.json())
   .then(data => {
     document.getElementById("submissionStatus").innerText = data.message || "Submitted!";
@@ -52,6 +53,7 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
 
 
 
