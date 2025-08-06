@@ -4,6 +4,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)  # Allow frontend to access backend
 
+# In-memory leaderboard
 leaderboard = []
 
 @app.route('/submit', methods=['POST'])
@@ -23,8 +24,11 @@ def get_leaderboard():
 @app.route('/reset', methods=['POST'])
 def reset_leaderboard():
     auth = request.headers.get("Authorization")
-    if auth != "secret123":
+    if auth != "secret123":  # Change this to a secure token
         return jsonify({"message": "Unauthorized"}), 403
 
     leaderboard.clear()
     return jsonify({"message": "Leaderboard reset successfully!"}), 200
+
+if __name__ == '__main__':
+    app.run()
