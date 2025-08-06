@@ -1,114 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>CodeJammer Leaderboard</title>
-  <style>
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #fefefe;
-    color: #333;
-    margin: 0;
-    padding: 40px;
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 2rem;
-    color: #0077ff;
-    margin-bottom: 20px;
-  }
-
-  table {
-    margin: 0 auto;
-    border-collapse: collapse;
-    width: 90%;
-    max-width: 800px;
-  }
-
-  th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-  }
-
-  th {
-    background-color: #f0f8ff;
-    color: #333;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-
-  button {
-    background-color: #ff5c5c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 10px;
-    transition: background-color 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #e04848;
-  }
-
-  textarea, input[type="text"] {
-    width: 80%;
-    max-width: 600px;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
-
-  .back-home {
-    display: inline-block;
-    margin-top: 30px;
-    background-color: #555;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-  }
-
-  .back-home:hover {
-    background-color: #333;
-  }
-</style>
-
+  <link rel="stylesheet" href="codejammer.css">
 </head>
 <body>
-  <h1>CodeJammer Leaderboard</h1>
-  <table id="leaderboardTable">
-    <tr><th>Player</th><th>Prompt</th><th>Code</th></tr>
-  </table>
-
-  <h2>CodeJammer Challenge</h2>
-  <button onclick="generateChallenge()">Generate Challenge</button>
-  <button onclick="clearFields()">Clear</button>
-  <p id="challengeText"></p>
-
-  <textarea id="codeInput" placeholder="Write your code here..." rows="10" cols="50"></textarea><br>
-  <input type="text" id="playerName" placeholder="Your name" />
-  <button onclick="submitScore()">Submit</button>
-
-  <p id="submissionStatus"></p>
+  <h1>🏆 CodeJammer Leaderboard</h1>
+  <div id="leaderboard"></div>
 
   <script src="codejammer.js"></script>
-
-  <!-- Other content -->
-
-  <a href="https://willerdev-studio-page.netlify.app/" class="back-home">⬅ Back to Home</a>
-
 </body>
 </html>
-
-
-
