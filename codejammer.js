@@ -12,26 +12,24 @@ function generateChallenge() {
 }
 
 function submitScore() {
-  const player = document.getElementById("playerName").value;
-  const prompt = document.getElementById("challengeText").innerText;
-  const code = document.getElementById("codeInput").value;
+  const player = document.getElementById("playerName").value.trim();
+  const prompt = document.getElementById("challengeText").innerText.trim();
+  const code = document.getElementById("codeInput").value.trim();
 
-  if (!player || !code) {
-    document.getElementById("submissionStatus").innerText = "Please enter your name and code before submitting.";
+  if (!player || !code || !prompt) {
+    document.getElementById("submissionStatus").innerText = "Please fill in all fields before submitting.";
     return;
   }
 
-fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({ name: player, challenge: prompt, code })
-})
-
+  fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: player, challenge: prompt, code })
+  })
   .then(response => response.json())
   .then(data => {
     document.getElementById("submissionStatus").innerText = data.message || "Submitted!";
+    loadLeaderboard(); // Refresh leaderboard
   })
   .catch(error => {
     console.error("Error submitting:", error);
@@ -58,6 +56,7 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
 
 
 
