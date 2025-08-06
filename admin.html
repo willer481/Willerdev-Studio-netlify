@@ -67,21 +67,24 @@
       window.location.href = "/";
     }
 
-    function resetLeaderboard() {
-      fetch("https://your-backend-url/reset", {
-        method: "POST"
-      })
-      .then(response => {
-        if (!response.ok) throw new Error("Backend error");
-        return response.text();
-      })
-      .then(data => {
-        document.getElementById("adminStatus").textContent = "Leaderboard reset successfully!";
-      })
-      .catch(error => {
-        document.getElementById("adminStatus").textContent = "Error: " + error.message;
-      });
+function resetLeaderboard() {
+  fetch("https://willerdev-studio-netlify.onrender.com/reset", {
+    method: "POST",
+    headers: {
+      "Authorization": "secret123"
     }
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("Backend error");
+    return response.json();
+  })
+  .then(data => {
+    document.getElementById("adminStatus").textContent = data.message;
+  })
+  .catch(error => {
+    document.getElementById("adminStatus").textContent = "Error: " + error.message;
+  });
+}
   </script>
 </body>
 </html>
