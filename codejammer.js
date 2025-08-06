@@ -55,7 +55,12 @@ function loadLeaderboard() {
     .then(res => res.json())
     .then(data => {
       const table = document.getElementById("leaderboardTable");
-      table.innerHTML = "<tr><th>Player</th><th>Prompt</th><th>Code</th></tr>";
+      table.innerHTML += `<tr>
+        <td>${escapeHTML(entry.name)}</td>
+        <td>${escapeHTML(entry.challenge)}</td>
+        <td><pre>${escapeHTML(entry.code)}</pre></td>
+      </tr>`;
+
       data.forEach(entry => {
         const row = `<tr>
           <td>${entry.name}</td>
@@ -69,6 +74,7 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
 
 
 
