@@ -1,0 +1,85 @@
+/* ===== Reset & Base Styles ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #f7f9fc;
+  color: #333;
+  line-height: 1.6;
+  padding: 2em;
+}
+
+/* ===== Project Cards ===== */
+.project-card {
+  background: white;
+  padding: 2em;
+  margin: 2em auto;
+  max-width: 640px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+}
+
+.project-card h1 {
+  font-size: 1.8em;
+  margin-bottom: 0.5em;
+}
+
+.project-card p {
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+/* ===== Buttons & Links ===== */
+.project-link {
+  display: inline-block;
+  padding: 0.6em 1.4em;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.project-link:hover {
+  background-color: #2980b9;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  body {
+    padding: 1em;
+  }
+
+  .project-card {
+    padding: 1.5em;
+    margin: 1em;
+  }
+
+  .project-card h1 {
+    font-size: 1.5em;
+  }
+
+  .project-link {
+    font-size: 0.95em;
+    padding: 0.5em 1.2em;
+  }
+}
+
+/* ===== Optional Footer (if needed) ===== */
+footer {
+  text-align: center;
+  padding: 2em 0;
+  font-size: 0.85em;
+  color: #aaa;
+}
