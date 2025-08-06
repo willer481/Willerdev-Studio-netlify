@@ -7,6 +7,15 @@ CORS(app)
 # In-memory leaderboard
 leaderboard = []
 
+@app.route('/reset', methods=['POST'])
+def reset_leaderboard():
+    auth = request.headers.get("Authorization")
+    if auth != "secret123":
+        return jsonify({"message": "Unauthorized"}), 403
+
+    leaderboard.clear()
+    return jsonify({"message": "Leaderboard reset successfully!"}), 200
+
 @app.route('/submit', methods=['POST'])
 def submit():
     data = request.get_json()
@@ -32,3 +41,4 @@ def reset_leaderboard():
 
 if __name__ == '__main__':
     app.run()
+
