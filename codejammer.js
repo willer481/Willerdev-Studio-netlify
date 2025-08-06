@@ -16,6 +16,11 @@ function submitScore() {
   const prompt = document.getElementById("challengeText").innerText;
   const code = document.getElementById("codeInput").value;
 
+  if (!player || !code) {
+    document.getElementById("submissionStatus").innerText = "Please enter your name and code before submitting.";
+    return;
+  }
+
 fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
   method: "POST",
   headers: {
@@ -53,6 +58,7 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
 
 
 
