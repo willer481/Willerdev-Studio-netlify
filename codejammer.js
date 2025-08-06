@@ -34,21 +34,34 @@ function submitScore() {
     return;
   }
 
-  fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name: player, challenge: prompt, code })
-  })
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById("submissionStatus").innerText = data.message || "Submitted!";
-    loadLeaderboard(); // Refresh leaderboard
-  })
-  .catch(error => {
-    console.error("Error submitting:", error);
-    document.getElementById("submissionStatus").innerText = "Submission failed.";
-  });
+  // Check for duplicate name
+  fetch("https://willerdev-studio-netlify-1.onrender.com/leaderboard")
+    .then(res => res.json())
+    .then(data => {
+      const nameExists = data.some(entry => entry.name.toLowerCase() === player.toLowerCase());
+      if (nameExists) {
+        document.getElementById("submissionStatus").innerText = "This name has already been used. Please choose another.";
+        return;
+      }
+
+      // Proceed with submission
+      fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: player, challenge: prompt, code })
+      })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("submissionStatus").innerText = data.message || "Submitted!";
+          loadLeaderboard(); // Refresh leaderboard
+        })
+        .catch(error => {
+          console.error("Error submitting:", error);
+          document.getElementById("submissionStatus").innerText = "Submission failed.";
+        });
+    });
 }
+
 
 function loadLeaderboard() {
   fetch("https://willerdev-studio-netlify-1.onrender.com/leaderboard")
@@ -70,3 +83,4 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
