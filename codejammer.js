@@ -1,3 +1,5 @@
+console.log("codejammer.js loaded");
+
 function generateChallenge() {
   const challenges = [
     "Print a triangle of stars",
@@ -53,6 +55,5 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
-
 
 
