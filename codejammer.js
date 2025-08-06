@@ -84,3 +84,4 @@ function loadLeaderboard() {
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
 
+
