@@ -16,7 +16,7 @@ function submitScore() {
   const prompt = document.getElementById("challengeText").innerText.trim();
   const code = document.getElementById("codeInput").value.trim();
 
-  if (!player || !code || !prompt) {
+  if (!player.trim() || !code.trim() || !prompt.trim()) {
     document.getElementById("submissionStatus").innerText = "Please fill in all fields before submitting.";
     return;
   }
@@ -63,6 +63,7 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
 
 
 
