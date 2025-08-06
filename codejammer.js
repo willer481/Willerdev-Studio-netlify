@@ -11,15 +11,11 @@ function generateChallenge() {
   document.getElementById("challengeText").innerText = randomChallenge;
 }
 
-function submitScore() {
-  const player = document.getElementById("playerName").value.trim();
-  const prompt = document.getElementById("challengeText").innerText.trim();
-  const code = document.getElementById("codeInput").value.trim();
-
-  if (!player.trim() || !code.trim() || !prompt.trim()) {
-    document.getElementById("submissionStatus").innerText = "Please fill in all fields before submitting.";
-    return;
-  }
+function escapeHTML(str) {
+  return str.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+}
 
 function clearFields() {
   document.getElementById("playerName").value = "";
@@ -28,11 +24,15 @@ function clearFields() {
   document.getElementById("submissionStatus").innerText = "";
 }
 
-function escapeHTML(str) {
-  return str.replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;");
-}
+function submitScore() {
+  const player = document.getElementById("playerName").value.trim();
+  const prompt = document.getElementById("challengeText").innerText.trim();
+  const code = document.getElementById("codeInput").value.trim();
+
+  if (!player || !code || !prompt) {
+    document.getElementById("submissionStatus").innerText = "Please fill in all fields before submitting.";
+    return;
+  }
 
   fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
     method: "POST",
@@ -55,30 +55,18 @@ function loadLeaderboard() {
     .then(res => res.json())
     .then(data => {
       const table = document.getElementById("leaderboardTable");
-      table.innerHTML += `<tr>
-        <td>${escapeHTML(entry.challenge)}</td>
-        <td><pre>${escapeHTML(entry.code)}</pre></td>
-      </tr>`;
+      table.innerHTML = ""; // Clear previous rows
 
       data.forEach(entry => {
         const row = `<tr>
-        <td>${escapeHTML(entry.challenge)}</td>
-        <td><pre>${escapeHTML(entry.code)}</pre></td>
-      </tr>`;
+          <td>${escapeHTML(entry.name)}</td>
+          <td>${escapeHTML(entry.challenge)}</td>
+          <td><pre>${escapeHTML(entry.code)}</pre></td>
+        </tr>`;
+        table.innerHTML += row;
       });
     });
 }
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
-
-
-
-
-
-
-
-
-
-
-
