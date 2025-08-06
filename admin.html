@@ -13,18 +13,25 @@
       align-items: center;
       padding: 40px;
     }
-    h1 {
-      color: #333;
-      margin-bottom: 20px;
-    }
-    .admin-box {
+
+    .login-box, .admin-box {
       background: white;
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
       width: 300px;
+      margin-top: 20px;
     }
+
+    input[type="password"] {
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
     button, .back-button {
       background-color: #0077ff;
       color: white;
@@ -38,9 +45,11 @@
       text-decoration: none;
       display: inline-block;
     }
+
     button:hover, .back-button:hover {
       background-color: #005fcc;
     }
+
     #adminStatus {
       margin-top: 15px;
       color: #555;
@@ -49,6 +58,14 @@
 </head>
 <body>
   <h1>Admin Panel</h1>
+
+  <div class="login-box" id="loginBox">
+    <p>Enter admin password:</p>
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button onclick="checkPassword()">Login</button>
+    <p id="loginStatus"></p>
+  </div>
+
   <div class="admin-box" id="adminPanel" style="display:none;">
     <p>Click below to reset the leaderboard:</p>
     <button onclick="resetLeaderboard()">🧹 Reset Leaderboard</button>
@@ -57,34 +74,34 @@
   </div>
 
   <script>
-    const correctPassword = "codejammer123"; // Change this to your actual password
-    const userPassword = prompt("Enter admin password:");
-
-    if (userPassword === correctPassword) {
-      document.getElementById("adminPanel").style.display = "block";
-    } else {
-      alert("Access denied.");
-      window.location.href = "/";
+    function checkPassword() {
+      const input = document.getElementById("adminPassword").value;
+      if (input === "codejammer123") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+      } else {
+        document.getElementById("loginStatus").textContent = "Incorrect password.";
+      }
     }
 
-function resetLeaderboard() {
-  fetch("https://willerdev-studio-netlify.onrender.com/reset", {
-    method: "POST",
-    headers: {
-      "Authorization": "secret123"
+    function resetLeaderboard() {
+      fetch("https://willerdev-studio-netlify.onrender.com/reset", {
+        method: "POST",
+        headers: {
+          "Authorization": "secret123"
+        }
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Backend error");
+        return response.json();
+      })
+      .then(data => {
+        document.getElementById("adminStatus").textContent = data.message;
+      })
+      .catch(error => {
+        document.getElementById("adminStatus").textContent = "Error: " + error.message;
+      });
     }
-  })
-  .then(response => {
-    if (!response.ok) throw new Error("Backend error");
-    return response.json();
-  })
-  .then(data => {
-    document.getElementById("adminStatus").textContent = data.message;
-  })
-  .catch(error => {
-    document.getElementById("adminStatus").textContent = "Error: " + error.message;
-  });
-}
   </script>
 </body>
 </html>
