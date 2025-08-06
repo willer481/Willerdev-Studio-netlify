@@ -21,6 +21,13 @@ function submitScore() {
     return;
   }
 
+  function clearFields() {
+  document.getElementById("playerName").value = "";
+  document.getElementById("codeInput").value = "";
+  document.getElementById("challengeText").innerText = "";
+  document.getElementById("submissionStatus").innerText = "";
+}
+
   fetch("https://willerdev-studio-netlify-1.onrender.com/submit", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -56,6 +63,7 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
 
 
 
