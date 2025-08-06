@@ -9,6 +9,17 @@ function generateChallenge() {
   document.getElementById("challengeText").innerText = random;
 }
 
+function generateChallenge() {
+  const challenges = [
+    "Make this print a triangle of stars",
+    "Turn this into a countdown timer",
+    "Make this draw a smiley face in ASCII",
+    "Add a twist to this basic calculator"
+  ];
+  const random = challenges[Math.floor(Math.random() * challenges.length)];
+  document.getElementById("challengeText").innerText = random;
+}
+
 function submitScore() {
   const name = document.getElementById("playerName").value;
   const code = document.getElementById("codeInput").value;
@@ -53,4 +64,5 @@ function loadLeaderboard() {
 
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
+
 
