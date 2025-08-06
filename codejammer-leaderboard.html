@@ -2,17 +2,24 @@
 <html>
 <head>
   <title>CodeJammer Leaderboard</title>
-  <style>
-    body { font-family: monospace; background: #111; color: #0f0; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border: 1px solid #0f0; padding: 8px; text-align: left; }
-  </style>
+  <link rel="stylesheet" href="codejammer.css">
 </head>
 <body>
   <h1>CodeJammer Leaderboard</h1>
-  <table>
-    <tr><th>Player</th><th>Prompt</th><th>Time</th><th>Score</th></tr>
-    <tr><td>Willem</td><td>Triangle of stars</td><td>28s</td><td>🔥</td></tr>
+  <table id="leaderboardTable">
+    <tr><th>Player</th><th>Prompt</th><th>Code</th></tr>
   </table>
+
+  <h2>CodeJammer Challenge</h2>
+  <button onclick="generateChallenge()">Generate Challenge</button>
+  <p id="challengeText"></p>
+
+  <textarea id="codeInput" placeholder="Write your code here..." rows="10" cols="50"></textarea><br>
+  <input type="text" id="playerName" placeholder="Your name" />
+  <button onclick="submitScore()">Submit</button>
+
+  <p id="submissionStatus"></p>
+
+  <script src="codejammer.js"></script>
 </body>
 </html>
