@@ -28,7 +28,7 @@
       width: 300px;
     }
 
-    button {
+    button, .back-button {
       background-color: #0077ff;
       color: white;
       border: none;
@@ -38,9 +38,11 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       margin-top: 10px;
+      text-decoration: none;
+      display: inline-block;
     }
 
-    button:hover {
+    button:hover, .back-button:hover {
       background-color: #005fcc;
     }
 
@@ -56,6 +58,7 @@
     <p>Click below to reset the leaderboard:</p>
     <button onclick="resetLeaderboard()">🧹 Reset Leaderboard</button>
     <p id="adminStatus"></p>
+    <a href="https://willerdev-studio-page.netlify.app/" class="back-button">⬅ Back to Main Page</a>
   </div>
 
   <script src="admin.js"></script>
