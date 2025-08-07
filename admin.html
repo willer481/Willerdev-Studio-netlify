@@ -35,10 +35,13 @@
     }
 
     function resetLeaderboard() {
-      fetch("https://willerdev-studio-netlify-1.onrender.com/reset", {
+      fetch("https://willerdev-studio-netlify.onrender.com/reset", {
         method: "POST",
         headers: {
           "Authorization": "secret123"
+  }
+})
+
         }
       })
       .then(response => {
