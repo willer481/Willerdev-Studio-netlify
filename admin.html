@@ -24,37 +24,34 @@
   </div>
 
   <script>
-    function checkPassword() {
-      const input = document.getElementById("adminPassword").value;
-      if (input === "codejammer123") {
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("adminPanel").style.display = "block";
-      } else {
-        document.getElementById("loginStatus").textContent = "Incorrect password.";
-      }
+  function checkPassword() {
+    const input = document.getElementById("adminPassword").value;
+    if (input === "codejammer123") {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("adminPanel").style.display = "block";
+    } else {
+      document.getElementById("loginStatus").textContent = "Incorrect password.";
     }
-
-    function resetLeaderboard() {
-      fetch("https://willerdev-studio-netlify.onrender.com/reset", {
-        method: "POST",
-        headers: {
-          "Authorization": "secret123"
   }
-})
 
-        }
-      })
-      .then(response => {
-        if (!response.ok) throw new Error("Backend error");
-        return response.json();
-      })
-      .then(data => {
-        document.getElementById("adminStatus").textContent = data.message;
-      })
-      .catch(error => {
-        document.getElementById("adminStatus").textContent = "Error: " + error.message;
-      });
-    }
+  function resetLeaderboard() {
+    fetch("https://willerdev-studio-netlify.onrender.com/reset", {
+      method: "POST",
+      headers: {
+        "Authorization": "secret123"
+      }
+    })
+    .then(response => {
+      if (!response.ok) throw new Error("Backend error");
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById("adminStatus").textContent = data.message;
+    })
+    .catch(error => {
+      document.getElementById("adminStatus").textContent = "Error: " + error.message;
+    });
+  }
   </script>
 </body>
 </html>
